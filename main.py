@@ -16,6 +16,17 @@ def print_books():
 
 def find_book():
     user_input = input("Enter an author or a genre")
+    matching_books = []
+    for i in library_books:
+        if user_input.lower() == i["author"].lower():
+            matching_books.append(i)
+        if user_input.lower() == i["genre"].lower():
+            matching_books.apend(i)
+    
+    for i in matching_books:
+        print(f"Book ID: {i["id"]}\nTitle: {i["title"]}\nAuthor: {i["author"]}\nGenre: {i["genre"]}\nAvailable: {i["available"]}")
+
+    
 
 
 
