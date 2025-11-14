@@ -79,13 +79,25 @@ def return_book_by_id():
                 book ["due_date"] = None
                 print("You returned book " + return_id)
             else:
-                print("This book is currently available")
-    if id_found == False:
+                print("This book is currently available")          #if the book was already set to available
+    if id_found == False:                                   #check flag to ensure the book id was entered properly
         print("No book with ID: '" + book_id + "' exists.")
 
 
 # TODO: Create a function to list all overdue books
 # A book is overdue if its due_date is before today AND it is still checked out
+
+def check_overdue_books():
+    overdue_books = []      #list to store overdue books
+    overdue_found = False       # flag 
+    for book in library_books:
+        if book['available'] == False and book['due_date'] is not None and datetime.strptime(book['due_date'], "%x") < datetime.today():     # checks for due date being set to None to avoid error with datetime class functions
+            overdue_found = True                        #adjusts flag when a book is overdue
+            overdue_books.append(book)
+    for book in overdue_books:
+        print(book['title'] + "\n")
+    if overdue_found == False:
+        print("No books are overdue.")
 
 
 # -------- Level 5 --------
